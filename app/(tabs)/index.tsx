@@ -1,98 +1,88 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+import SearchBar from "@/components/SearchBar";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { useRouter } from "expo-router";
+import { Image, ScrollView, View } from "react-native";
+import "../global.css";
+// const heroItems = [
+//   {
+//     id: 1,
+//     title: "Airport Dashboard",
+//     icon: "mdi:airplane",
+//     href: "/dashboard",
+//   },
+//   {
+//     id: 2,
+//     title: "Full Checklist",
+//     icon: "mdi:clipboard-check-outline",
+//     href: "/dashboard/full-checklist",
+//   },
+//   {
+//     id: 3,
+//     title: "Partial Checklist",
+//     icon: "mdi:clipboard-list-outline",
+//     href: "/dashboard/partial-checklist",
+//   },
+//   {
+//     id: 4,
+//     title: "Summary Report",
+//     icon: "mdi:file-chart-outline",
+//     href: "/dashboard/report-summary",
+//   },
+//   {
+//     id: 5,
+//     title: "CAPs",
+//     icon: "mdi:book-edit-outline",
+//     href: "/dashboard/caps",
+//   },
+//   {
+//     id: 6,
+//     title: "Findings Tracker",
+//     icon: "mdi:track-light",
+//     href: "/dashboard/tracker",
+//   },
+//   {
+//     id: 7,
+//     title: "Overview Findings",
+//     icon: "mdi:eye-outline",
+//     href: "/dashboard/overview",
+//   },
+//   {
+//     id: 8,
+//     title: "Exemptions",
+//     icon: "mdi:shield-off-outline",
+//     href: "/dashboard/exemptions",
+//   },
+//   {
+//     id: 9,
+//     title: "ASD Library",
+//     icon: "mdi:library-outline",
+//     href: "/dashboard/library",
+//   },
+// ];
+export default function index() {
+  const router = useRouter();
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View className="flex-1  bg-primary">
+      <Image source={images.bg} className="absolute w-full  z-0" />
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <ScrollView
+        className="flex-1 px-5 "
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
+      >
+        {" "}
+        <Image
+          source={icons.logo}
+          className="w-12 h-10 mt-20 mb-5 mx-auto "
+        />{" "}
+        <View className="flex-1 mt-10">
+          <SearchBar
+            onPress={() => router.push("/search")}
+            placeholder="Search Movie here"
+          />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
