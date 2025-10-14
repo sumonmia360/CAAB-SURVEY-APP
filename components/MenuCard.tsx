@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 interface cardProps {
   id: number;
   title: string;
@@ -12,7 +12,7 @@ const MenuCard = ({ id, title, icon, url }: cardProps) => {
   return (
     <Link href={url} className="w-[45%] border rounded-lg h-full  ">
       <View className="flex w-full items-center justify-center ">
-        <Image source={require(icon)} className="size-20 "></Image>
+        {/* <Image source={require(icon)} className="size-20 "></Image> */}
         <Text className="font-bold">{title}</Text>
       </View>
     </Link>
