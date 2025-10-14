@@ -76,7 +76,7 @@ export default function index() {
           className="w-20 h-20 mt-10 mb- mx-auto "
         />{" "}
         <View className="flex-1 mt-10">
-          <Text className="font-bold">CAAB SURVEY</Text>
+          <Text className="font-bold">CAAB SURVEY1</Text>
         </View>
         <FlatList
           data={heroItems}
