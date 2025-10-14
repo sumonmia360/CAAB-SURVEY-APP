@@ -3,59 +3,63 @@ import { images } from "@/constants/images";
 import MenuCard from "@/components/MenuCard";
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import "../global.css";
+// const images = {
+//       image1: require('@assets/images/dashboard.png'),
+//       image2: require('../assets/image2.jpg'),
+//     };
 const heroItems = [
   {
     id: 1,
     title: "Airport Dashboard",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/dashboard.png'),
     url: "/dashboard",
   },
   {
     id: 2,
     title: "Full Checklist",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/checklist.png'),
     url: "/dashboard/fullChecklist",
   },
   {
     id: 3,
     title: "Partial Checklist",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/checklist2.png'),
     url: "/dashboard/partial-checklist",
   },
   {
     id: 4,
     title: "Summary Report",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/reports.png'),
     url: "/dashboard/report-summary",
   },
   {
     id: 5,
     title: "CAPs",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/caps.png'),
     url: "/dashboard/caps",
   },
   {
     id: 6,
     title: "Findings Tracker",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/findings.png'),
     url: "/dashboard/tracker",
   },
   {
     id: 7,
-    title: "Overview Findings",
-    icon: "@/assets/images/dashboard.png",
+    title: "Overdues Findings",
+    image1: require('../../assets/images/overdues.png'),
     url: "/dashboard/overview",
   },
   {
     id: 8,
     title: "Exemptions",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/exemptions.png'),
     url: "/dashboard/exemptions",
   },
   {
     id: 9,
     title: "ASD Library",
-    icon: "@/assets/images/dashboard.png",
+    image1: require('../../assets/images/library.png'),
     url: "/dashboard/library",
   },
 ];
@@ -76,7 +80,7 @@ export default function index() {
           className="w-20 h-20 mt-10 mb- mx-auto "
         />{" "}
         <View className="flex-1 mt-10">
-          <Text className="font-bold">CAAB SURVEY1</Text>
+          <Text className="font-bold">CAAB SURVEY</Text>
         </View>
         <FlatList
           data={heroItems}
