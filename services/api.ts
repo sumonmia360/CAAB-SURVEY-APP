@@ -1,6 +1,6 @@
-export const TMDB_CONFIG = {};
+// export const TMDB_CONFIG = {};
 
-// const url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+// const url = "http://192.168.88.208:8002/api/subjects/";
 // const options = {
 //   method: "GET",
 //   headers: {
@@ -10,7 +10,21 @@ export const TMDB_CONFIG = {};
 //   },
 // };
 
-// fetch(url, options)
+// fetch(url)
 //   .then((res) => res.json())
 //   .then((json) => console.log(json))
 //   .catch((err) => console.error(err));
+  
+
+ 
+
+
+//   const fetchData = async ()=>{
+//     fetch(url)
+//       .then((res) => res.json())
+//       .then((json) => console.log(json))
+//       .catch((err) => console.error(err));
+
+//   }
+
+//    export const data = fetchData();

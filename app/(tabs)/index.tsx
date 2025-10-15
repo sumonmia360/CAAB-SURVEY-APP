@@ -1,73 +1,12 @@
-import { images } from "@/constants/images";
-
 import MenuCard from "@/components/MenuCard";
+import { images } from "@/constants/images";
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import { heroItems } from "../../jsons/HeroData";
 import "../global.css";
-// const images = {
-//       image1: require('@assets/images/dashboard.png'),
-//       image2: require('../assets/image2.jpg'),
-//     };
-const heroItems = [
-  {
-    id: 1,
-    title: "Airport Dashboard",
-    image1: require('../../assets/images/dashboard.png'),
-    url: "/dashboard",
-  },
-  {
-    id: 2,
-    title: "Full Checklist",
-    image1: require('../../assets/images/checklist.png'),
-    url: "/dashboard/fullChecklist",
-  },
-  {
-    id: 3,
-    title: "Partial Checklist",
-    image1: require('../../assets/images/checklist2.png'),
-    url: "/dashboard/partial-checklist",
-  },
-  {
-    id: 4,
-    title: "Summary Report",
-    image1: require('../../assets/images/reports.png'),
-    url: "/dashboard/report-summary",
-  },
-  {
-    id: 5,
-    title: "CAPs",
-    image1: require('../../assets/images/caps.png'),
-    url: "/dashboard/caps",
-  },
-  {
-    id: 6,
-    title: "Findings Tracker",
-    image1: require('../../assets/images/findings.png'),
-    url: "/dashboard/tracker",
-  },
-  {
-    id: 7,
-    title: "Overdues Findings",
-    image1: require('../../assets/images/overdues.png'),
-    url: "/dashboard/overview",
-  },
-  {
-    id: 8,
-    title: "Exemptions",
-    image1: require('../../assets/images/exemptions.png'),
-    url: "/dashboard/exemptions",
-  },
-  {
-    id: 9,
-    title: "ASD Library",
-    image1: require('../../assets/images/library.png'),
-    url: "/dashboard/library",
-  },
-];
+
 export default function index() {
-  // const router = useRouter();
   return (
     <View className="flex-1  bg-primar">
-      {/* <Image source={images.bg} className="absolute w-full  z-0" /> */}
 
       <ScrollView
         className="flex-1 px-5 mx-auto "
@@ -83,17 +22,15 @@ export default function index() {
           <Text className="font-bold">CAAB SURVEY</Text>
         </View>
         <FlatList
-          data={heroItems}
+          data={heroItems
+
+          }
           renderItem={({ item }) => <MenuCard {...item}></MenuCard>}
           numColumns={2}
           columnWrapperStyle={{
             justifyContent: "space-between",
-            // alignItems: "center",
             gap: 10,
-            // paddingRight: ,
             marginBottom: 10,
-            // marginRight: "auto",
-            // marginLeft: "auto",
           }}
           scrollEnabled={false}
           className="mt-2 pb-32"
@@ -103,9 +40,3 @@ export default function index() {
   );
 }
 
-{
-  /* <SearchBar
-            onPress={() => router.push("/search")}
-            placeholder="Search Movie here"
-          /> */
-}

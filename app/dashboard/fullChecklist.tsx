@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const fullChecklist = () => {
   return (
@@ -11,4 +11,3 @@ const fullChecklist = () => {
 
 export default fullChecklist;
 
-const styles = StyleSheet.create({});
