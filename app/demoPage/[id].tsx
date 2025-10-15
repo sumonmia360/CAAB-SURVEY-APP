@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const demoPage = () => {
   return (
@@ -11,4 +11,3 @@ const demoPage = () => {
 
 export default demoPage;
 
-const styles = StyleSheet.create({});

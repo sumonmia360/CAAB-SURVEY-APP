@@ -7,6 +7,7 @@ import "../global.css";
 export default function index() {
   return (
     <View className="flex-1  bg-primar">
+      
 
       <ScrollView
         className="flex-1 px-5 mx-auto "
@@ -16,9 +17,9 @@ export default function index() {
         {" "}
         <Image
           source={images.projectLogo}
-          className="w-20 h-20 mt-10 mb- mx-auto "
+          className="w-20 h-20 mt-10  mx-auto "
         />{" "}
-        <View className="flex-1 mt-10">
+        <View className="flex-1 mt-5">
           <Text className="font-bold">CAAB SURVEY</Text>
         </View>
         <FlatList

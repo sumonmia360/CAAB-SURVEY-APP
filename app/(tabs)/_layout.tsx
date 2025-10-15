@@ -32,7 +32,7 @@ const _layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarShowLabel: false,
+        tabBarShowLabel: false, 
         tabBarIconStyle: {
           width: "100%",
           height: "70%",
@@ -43,7 +43,7 @@ const _layout = () => {
           backgroundColor: "#0f0D23",
           borderRadius: 50,
           marginHorizontal: 20,
-          marginBottom: 30,
+          marginBottom: 15,
           height: 60,
           position: "absolute",
           overflow: "hidden",
@@ -63,22 +63,22 @@ const _layout = () => {
         }}
       />
       <Tabs.Screen
-        name="saved"
+        name="activities"
         options={{
           headerShown: false,
-          title: "Saved",
+          title: "Activities",
           tabBarIcon: ({ focused }) => (
-            <TabIcon title="Saved" icon={icons.save} focused={focused} />
+            <TabIcon title="Activities" icon={icons.activities} focused={focused} />
           ),
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="contact"
         options={{
-          title: "Search",
+          title: "Contact",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon title="Search" icon={icons.search} focused={focused} />
+            <TabIcon title="Contact" icon={icons.contact} focused={focused} />
           ),
         }}
       />
@@ -86,7 +86,7 @@ const _layout = () => {
         name="profile"
         options={{
           title: "Profile",
-
+         
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon title="Profile" icon={icons.person} focused={focused} />
