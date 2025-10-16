@@ -6,7 +6,7 @@ import { Image, Pressable, Text, View } from "react-native";
 const notFoundPage = () => {
   return (
     <View className="flex-1  items-center gap-5 ">
-      <Image source={images.projectLogo} className="w-40 h-40 mt-60" />{" "}
+      <Image source={images.projectLogo} className="w-40 h-40 mt-60" />
       <Text className="text-5xl font-extrabold ">404 Not Found!</Text>
       <Pressable>
         <Link
