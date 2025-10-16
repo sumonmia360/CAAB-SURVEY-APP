@@ -3,9 +3,9 @@ import React from "react";
 
 const _layout = () => {
   return (
-    <Stack>
+    <Stack >
       <Stack.Screen name="fullChecklist" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="_layout" options={{ headerShown: false }} /> */}
+      <Stack.Screen name="partialChecklist" options={{ headerShown: false }} />
     </Stack>
   );
 };
