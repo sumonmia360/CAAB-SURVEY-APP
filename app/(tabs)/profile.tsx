@@ -6,7 +6,7 @@ import { images } from "../../constants/images";
 const mockUser = {
   name: "Sumon Mia",
   email: "sumonmia.dev@gmail.com",
-  avatar: images?.profile || "https://ui-avatars.com/api/?name=John+Doe",
+  avatar: images?.profile,
 };
 
 const Profile = () => {

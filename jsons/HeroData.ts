@@ -4,7 +4,7 @@ export const heroItems = [
     id: 1,
     title: "Airport Dashboard",
     image1: require('../assets/images/dashboard.png'),
-    url: "/demoPage/[id]",
+    url: "/+not-found",
   },
   {
     id: 2,
