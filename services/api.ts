@@ -1,6 +1,6 @@
 // export const TMDB_CONFIG = {};
 
-// const url = "http://192.168.88.208:8002/api/subjects/";
+// const url = process.env.NEXT_PUBLIC_SERVER_URL;
 // const options = {
 //   method: "GET",
 //   headers: {

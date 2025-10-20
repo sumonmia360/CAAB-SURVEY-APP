@@ -1,9 +1,13 @@
+import { InputField } from "@/components/InputField";
+import SingleTable from "@/components/SingleTable";
 import { addQuestionFildesTexts } from "@/jsons/AddQuestionData";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 import {
   Modal,
   Pressable,
-  TextInput as RNTextInput,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,7 +16,44 @@ import {
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const FullChecklist = () => {
+  const [questions, setQuestions] = useState<any[]>([]);
+  const [subjects, setSubjects] = useState<any[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`http://192.168.88.235:8090/api/questions`, {
+        withCredentials: true,
+      })
+      .then((res: any) => {
+        if (res.data) {
+          setQuestions(res.data);
+        }
+      });
+    axios
+      .get(`http://192.168.88.235:8090/api/subjects`, {
+        withCredentials: true,
+      })
+      .then((res: any) => {
+        if (res.data) {
+          setSubjects(res.data);
+        }
+      });
+  }, []);
+  let subjectWaseQuestionsArray: any = [];
+  for (let i = 0; i < subjects.length; i++) {
+    let subjectWaseQuestions = questions.filter(
+      (q) => q.subject_name === subjects[i]?.name
+    );
+
+    subjectWaseQuestionsArray.push(subjectWaseQuestions);
+  }
+
+  let withoutNullSubjectWaseQuestionsArray = subjectWaseQuestionsArray.filter(
+    (item: any) => item.length > 0
+  );
+  subjectWaseQuestionsArray = withoutNullSubjectWaseQuestionsArray;
+
   const [form, setForm] = useState({
     subject: "",
     questionText: "",
@@ -26,25 +67,37 @@ const FullChecklist = () => {
   };
 
   const handleSave = () => {
- 
-    // console.log("Saved question form:", form);
-    setForm({ subject: "", questionText: "", reference: "", mark: "", remark: "" });
+    // add to local list
+    setQuestions((prev) => [...prev, { ...form, id: Date.now().toString() }]);
+    setForm({
+      subject: "",
+      questionText: "",
+      reference: "",
+      mark: "",
+      remark: "",
+    });
     setModalVisible(false);
   };
 
   const handleCancel = () => {
-    setForm({ subject: "", questionText: "", reference: "", mark: "", remark: "" });
+    setForm({
+      subject: "",
+      questionText: "",
+      reference: "",
+      mark: "",
+      remark: "",
+    });
     setModalVisible(false);
   };
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 text-center px-4">
+      <SafeAreaView className="flex-1 px-4 text-center  ">
         <Text className="text-3xl font-extrabold text-center ">
           Add a Survey Question
         </Text>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text className="text-white text-xl font-semibold">
+          <Text className="text-white text-xl font-semibold ">
             + Add Question
           </Text>
         </TouchableOpacity>
@@ -59,7 +112,6 @@ const FullChecklist = () => {
             <View style={styles.modalView}>
               <Text style={styles.modalTitle}>Add New Question</Text>
 
-            
               {addQuestionFildesTexts.map((field) => (
                 <View key={field.key} style={{ marginBottom: 8 }}>
                   <Text>{field.label}</Text>
@@ -67,7 +119,9 @@ const FullChecklist = () => {
                     style={styles.input}
                     placeholder={field.placeholder}
                     value={form[field.key as keyof typeof form]}
-                    onChangeText={(text: string) => setForm((p) => ({ ...p, [field.key]: text }))}
+                    onChangeText={(text: string) =>
+                      setForm((p) => ({ ...p, [field.key]: text }))
+                    }
                     multiline
                   />
                 </View>
@@ -90,21 +144,24 @@ const FullChecklist = () => {
             </View>
           </View>
         </Modal>
+        {questions.length === 0 ? (
+          <View className="flex-1 justify-center items-center">
+            <Text className="text-2xl text-center">No Question added yet!</Text>
+          </View>
+        ) : (
+          <ScrollView className="">
+            {subjectWaseQuestionsArray.map(
+              (subjectWaseQuestionsData: any, idx: any) => (
+                <SingleTable
+                  key={idx}
+                  {...{ subjectWaseQuestionsData }}
+                ></SingleTable>
+              )
+            )}
+          </ScrollView>
+        )}
       </SafeAreaView>
     </SafeAreaProvider>
-  );
-};
-
-// Reusable input field component to follow DRY principle
-const InputField = ({ value, onChangeText, placeholder, style, multiline }: any) => {
-  return (
-    <RNTextInput
-      value={value}
-      onChangeText={onChangeText}
-      placeholder={placeholder}
-      style={style}
-      multiline={multiline}
-    />
   );
 };
 
@@ -118,6 +175,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#040D26",
     padding: 10,
+    marginRight: 10,
+    marginLeft: 10,
     borderRadius: 20,
     marginTop: 10,
   },
