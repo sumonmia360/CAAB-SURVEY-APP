@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { Row, Table } from "react-native-table-component";
+import { create } from 'zustand';
 interface Question {
   id: number;
   number: number;
@@ -20,8 +21,16 @@ interface Question {
   s: boolean;
   remarks: string;
 }
-
+export const useBear = create((set) => ({
+  bears: 5,
+  increasePopulation: () => set((state:any) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+  updateBears: (newBears:any) => set({ bears: newBears }),
+}))
 const ParitalTable = ({ subjectWaseQuestionsData }: any) => {
+ 
+
+
   const tableHead = ["Select", "Question", "Ref Code", "Mark", "Remarks"];
 
   const [idArray, setIdArray] = useState<any[]>([]);

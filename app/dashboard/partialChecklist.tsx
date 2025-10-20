@@ -1,13 +1,19 @@
-import ParitalTable from "@/components/ParitalTable";
+import ParitalTable, { useBear } from "@/components/ParitalTable";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import { ScrollView, Text, View } from "react-native";
+import {
+  ScrollView,
+  Text,
+  View
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const PartialCheklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
+  const [text, onChangeText] = React.useState("Useless Text");
+  const bears = useBear((state: any) => state.bears);
   // const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -48,10 +54,19 @@ const PartialCheklist = () => {
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 px-4 text-center  ">
         <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
-         Create groups from questions
-
+          Create groups from questions
         </Text>
-
+        {/* <View className="flex flex-row justify-between">
+          <TextInput
+          // style={styles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
+        <TouchableOpacity>
+          <Text>Create groups</Text>
+        </TouchableOpacity>
+        </View> */}
+        
         {questions.length === 0 ? (
           <View className="flex-1 justify-center items-center ">
             <Text className="text-2xl text-center">No Question added yet!</Text>
