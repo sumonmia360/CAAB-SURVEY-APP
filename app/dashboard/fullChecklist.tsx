@@ -1,24 +1,18 @@
-import { InputField } from "@/components/InputField";
 import SingleTable from "@/components/SingleTable";
-import { addQuestionFildesTexts } from "@/jsons/AddQuestionData";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import {
-  Modal,
-  Pressable,
   ScrollView,
-  StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const FullChecklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     axios
@@ -54,55 +48,55 @@ const FullChecklist = () => {
   );
   subjectWaseQuestionsArray = withoutNullSubjectWaseQuestionsArray;
 
-  const [form, setForm] = useState({
-    subject: "",
-    questionText: "",
-    reference: "",
-    mark: "",
-    remark: "",
-  });
+  // const [form, setForm] = useState({
+  //   subject: "",
+  //   questionText: "",
+  //   reference: "",
+  //   mark: "",
+  //   remark: "",
+  // });
 
-  const onPress = () => {
-    setModalVisible(true);
-  };
+  // const onPress = () => {
+  //   setModalVisible(true);
+  // };
 
-  const handleSave = () => {
-    // add to local list
-    setQuestions((prev) => [...prev, { ...form, id: Date.now().toString() }]);
-    setForm({
-      subject: "",
-      questionText: "",
-      reference: "",
-      mark: "",
-      remark: "",
-    });
-    setModalVisible(false);
-  };
+  // const handleSave = () => {
+  //   // add to local list
+  //   setQuestions((prev) => [...prev, { ...form, id: Date.now().toString() }]);
+  //   setForm({
+  //     subject: "",
+  //     questionText: "",
+  //     reference: "",
+  //     mark: "",
+  //     remark: "",
+  //   });
+  //   setModalVisible(false);
+  // };
 
-  const handleCancel = () => {
-    setForm({
-      subject: "",
-      questionText: "",
-      reference: "",
-      mark: "",
-      remark: "",
-    });
-    setModalVisible(false);
-  };
+  // const handleCancel = () => {
+  //   setForm({
+  //     subject: "",
+  //     questionText: "",
+  //     reference: "",
+  //     mark: "",
+  //     remark: "",
+  //   });
+  //   setModalVisible(false);
+  // };
 
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 px-4 text-center  ">
-        <Text className="text-3xl font-extrabold text-center ">
-          Add a Survey Question
+        <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
+           Survey Question
         </Text>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        {/* <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text className="text-white text-xl font-semibold ">
             + Add Question
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <Modal
+        {/* <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
@@ -143,9 +137,9 @@ const FullChecklist = () => {
               </View>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
         {questions.length === 0 ? (
-          <View className="flex-1 justify-center items-center">
+          <View className="flex-1 justify-center items-center ">
             <Text className="text-2xl text-center">No Question added yet!</Text>
           </View>
         ) : (
@@ -165,79 +159,79 @@ const FullChecklist = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 10,
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#040D26",
-    padding: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    borderRadius: 20,
-    marginTop: 10,
-  },
-  countContainer: {
-    alignItems: "center",
-    padding: 10,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: 20,
-  },
-  modalView: {
-    width: "100%",
-    backgroundColor: "white",
-    borderRadius: 8,
-    padding: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalTitle: {
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: "700",
-    marginBottom: 12,
-  },
-  input: {
-    minHeight: 40,
-    borderColor: "#ddd",
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    marginBottom: 12,
-    textAlignVertical: "top",
-  },
-  modalButtons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 10,
-  },
-  actionButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-  },
-  saveButton: {
-    backgroundColor: "#040D26",
-  },
-  cancelButton: {
-    backgroundColor: "#6b7280",
-    marginLeft: 8,
-  },
-  actionText: {
-    color: "white",
-    fontWeight: "600",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     paddingHorizontal: 10,
+//   },
+//   button: {
+//     alignItems: "center",
+//     backgroundColor: "#040D26",
+//     padding: 10,
+//     marginRight: 10,
+//     marginLeft: 10,
+//     borderRadius: 20,
+//     marginTop: 10,
+//   },
+//   countContainer: {
+//     alignItems: "center",
+//     padding: 10,
+//   },
+//   centeredView: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     backgroundColor: "rgba(0,0,0,0.5)",
+//     padding: 20,
+//   },
+//   modalView: {
+//     width: "100%",
+//     backgroundColor: "white",
+//     borderRadius: 8,
+//     padding: 20,
+//     shadowColor: "#000",
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowOpacity: 0.25,
+//     shadowRadius: 4,
+//     elevation: 5,
+//   },
+//   modalTitle: {
+//     fontSize: 18,
+//     textAlign: "center",
+//     fontWeight: "700",
+//     marginBottom: 12,
+//   },
+//   input: {
+//     minHeight: 40,
+//     borderColor: "#ddd",
+//     borderWidth: 1,
+//     borderRadius: 8,
+//     padding: 10,
+//     marginBottom: 12,
+//     textAlignVertical: "top",
+//   },
+//   modalButtons: {
+//     flexDirection: "row",
+//     justifyContent: "center",
+//     gap: 10,
+//   },
+//   actionButton: {
+//     paddingVertical: 10,
+//     paddingHorizontal: 16,
+//     borderRadius: 8,
+//   },
+//   saveButton: {
+//     backgroundColor: "#040D26",
+//   },
+//   cancelButton: {
+//     backgroundColor: "#6b7280",
+//     marginLeft: 8,
+//   },
+//   actionText: {
+//     color: "white",
+//     fontWeight: "600",
+//   },
+// });
 
 export default FullChecklist;
