@@ -3,5 +3,12 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "workbench.editor.scrollToSwitchTabs": true,
+  "workbench.editor.enablePreviewFromCodeNavigation": false,
+  "workbench.editor.tabActionLocation": "right",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.wrapTabs": true,
+  "window.density.editorTabHeight": "default",
+  "workbench.editor.showTabs": "multiple"
 }

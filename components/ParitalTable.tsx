@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useGroupMainArray } from "@/store/store";
+import React from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -7,7 +8,6 @@ import {
   View,
 } from "react-native";
 import { Row, Table } from "react-native-table-component";
-import { create } from 'zustand';
 interface Question {
   id: number;
   number: number;
@@ -21,41 +21,36 @@ interface Question {
   s: boolean;
   remarks: string;
 }
-export const useBear = create((set) => ({
-  bears: 5,
-  increasePopulation: () => set((state:any) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears:any) => set({ bears: newBears }),
-}))
+
 const ParitalTable = ({ subjectWaseQuestionsData }: any) => {
- 
-
-
   const tableHead = ["Select", "Question", "Ref Code", "Mark", "Remarks"];
-
-  const [idArray, setIdArray] = useState<any[]>([]);
+  const setIdArray = useGroupMainArray((state) => state.setArrayA);
+  const setEmtyIdArray = useGroupMainArray((state) => state.setArrayB);
+  const idArrayValues = useGroupMainArray((state) => state.idArray);
 
   const subJectNameSet = subjectWaseQuestionsData[0].subject_name;
   const addIdInArrya = (id: number) => {
-    const NewId = idArray.includes(id);
+    const NewId = idArrayValues.includes(id);
+    // console.log(NewId);
     if (!NewId) {
-      setIdArray((ary) => [...ary, id]);
+      console.log(id);
+      setIdArray(id);
     } else {
-      const removeItiem = idArray.filter((elementsA) => elementsA !== id);
-      setIdArray(removeItiem);
+      const removeItiem = idArrayValues.filter(
+        (elementsA: number) => elementsA !== id
+      );
+      setEmtyIdArray(removeItiem);
     }
   };
   const addGroupBtn = (question2: Question) => {
     const id = question2.id;
     addIdInArrya(id);
   };
-  console.log(idArray);
+  // console.log(idArray);
 
   return (
     <View style={styles.container}>
-      <Text className="text-2xl mb-2 capitalize font-bold">
-        {subJectNameSet}
-      </Text>
+      <Text className="text-2xl capitalize font-bold">{subJectNameSet}</Text>
       <ScrollView horizontal={true}>
         <View>
           <ScrollView>
@@ -77,9 +72,9 @@ const ParitalTable = ({ subjectWaseQuestionsData }: any) => {
                       onPress={() => addGroupBtn(question2)}
                     >
                       <View
-                        className={`bg-[#78B7BB] ${idArray.includes(question2.id) ? "bg-green-500" : "bg-[#78B7BB]"} h-10 items-center justify-center `}
+                        className={`bg-[#78B7BB] ${idArrayValues.includes(question2.id) ? "bg-green-500" : "bg-[#78B7BB]"} h-10 items-center justify-center `}
                       >
-                        {idArray.includes(question2.id) ? (
+                        {idArrayValues.includes(question2.id) ? (
                           <Text style={styles2.btnText}>Selected!</Text>
                         ) : (
                           <Text style={styles2.btnText}>+Add</Text>
@@ -107,7 +102,8 @@ export default ParitalTable;
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    paddingTop: 30,
+    paddingTop: 4,
+    marginTop: 15,
   },
   head: { height: 40, backgroundColor: "#f1f8ff", fontWeight: "black" },
   text: { margin: 6, fontWeight: "black" },

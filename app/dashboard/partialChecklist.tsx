@@ -1,11 +1,15 @@
-import ParitalTable, { useBear } from "@/components/ParitalTable";
+import ParitalTable from "@/components/ParitalTable";
+import { useGroupMainArray } from "@/store/store";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import {
+  Alert,
   ScrollView,
   Text,
-  View
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
@@ -13,7 +17,9 @@ const PartialCheklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
   const [text, onChangeText] = React.useState("Useless Text");
-  const bears = useBear((state: any) => state.bears);
+  const idArrayValues = useGroupMainArray((state) => state.idArray);
+  console.log("Main Array:", idArrayValues);
+
   // const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -56,17 +62,24 @@ const PartialCheklist = () => {
         <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
           Create groups from questions
         </Text>
-        {/* <View className="flex flex-row justify-between">
-          <TextInput
-          // style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <TouchableOpacity>
-          <Text>Create groups</Text>
-        </TouchableOpacity>
-        </View> */}
-        
+        {idArrayValues.length === 0 ?  (
+          <></>
+        ):(
+          <View className="flex flex-row justify-between gap-3">
+            <TextInput
+              className=" block min-w-0 grow border h-12 rounded-md py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500  sm:text-sm/6 "
+              onChangeText={onChangeText}
+              placeholder="Group name"
+            />
+            <TouchableOpacity
+              onPress={() => Alert.alert("Simple Button pressed")}
+              className="text-white bg-blue-700 h-12  flex items-center justify-center   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2   "
+            >
+              <Text className="text-white">Create groups</Text>
+            </TouchableOpacity>
+          </View>
+        ) }
+
         {questions.length === 0 ? (
           <View className="flex-1 justify-center items-center ">
             <Text className="text-2xl text-center">No Question added yet!</Text>
@@ -79,6 +92,7 @@ const PartialCheklist = () => {
                   key={idx}
                   {...{ subjectWaseQuestionsData }}
                 ></ParitalTable>
+              
               )
             )}
           </ScrollView>
