@@ -16,7 +16,7 @@ interface Question {
 }
 
 const SingleTable = ({ subjectWaseQuestionsData }: any) => {
-  const tableHead = ["Question", "Ref Code", "Mark", "Remarks"];
+  const tableHead = ["No.", "Question", "Ref Code", "Mark", "Remarks"];
 
   const subJectNameSet = subjectWaseQuestionsData[0].subject_name;
 
@@ -29,16 +29,18 @@ const SingleTable = ({ subjectWaseQuestionsData }: any) => {
             <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
               <Row
                 data={tableHead}
-                widthArr={[201, 150, 70, 201]}
+                widthArr={[50, 701, 150, 70, 201]}
                 style={styles.head}
                 textStyle={styles.text1}
               />
-              {subjectWaseQuestionsData.map((question2: Question) => (
+              {subjectWaseQuestionsData.map((question2: Question,idx:number) => (
                 <Row
                   key={question2.id}
-                  widthArr={[201, 150, 70, 201]}
+                  widthArr={[50, 701, 150, 70, 201]}
                   textStyle={styles.text}
                   data={[
+                    idx+1,
+
                     question2.question_text,
                     question2.ref_to_ano,
                     question2.mark,

@@ -38,6 +38,7 @@
     "react-native-iconify": "^0.2.10",
     "react-native-paper": "^5.14.5",
     "react-native-reanimated": "~3.17.4",
+    "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "~4.16.0",
     "react-native-table-component": "^1.2.2",

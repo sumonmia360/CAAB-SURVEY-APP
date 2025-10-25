@@ -1,10 +1,10 @@
+import GroupCreateRuls from "@/components/GroupCreateRuls";
 import ParitalTable from "@/components/ParitalTable";
 import { useGroupMainArray } from "@/store/store";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import {
-  Alert,
   ScrollView,
   Text,
   TextInput,
@@ -16,11 +16,12 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 const PartialCheklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [text, onChangeText] = React.useState<any>("");
+  // console.log(text);
   const idArrayValues = useGroupMainArray((state) => state.idArray);
-  console.log("Main Array:", idArrayValues);
+  const arrayImtyAfterPost = useGroupMainArray((state) => state.setArrayB);
 
-  // const [modalVisible, setModalVisible] = useState(false);
+  // console.log("Main Array:", idArrayValues);
 
   useEffect(() => {
     axios
@@ -29,6 +30,7 @@ const PartialCheklist = () => {
       })
       .then((res: any) => {
         if (res.data) {
+          // console.log(res.data);
           setQuestions(res.data);
         }
       });
@@ -50,35 +52,67 @@ const PartialCheklist = () => {
 
     subjectWaseQuestionsArray.push(subjectWaseQuestions);
   }
+  // console.log(subjectWaseQuestionsArray);
+  const groupsDataPost = async () => {
+    // console.log("bangladesh2");
+    await axios
+      .post(
+        `http://192.168.88.235:8090/api/groups/`,
+        {
+          group_name: text,
+          question_ids: idArrayValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  };
 
   let withoutNullSubjectWaseQuestionsArray = subjectWaseQuestionsArray.filter(
     (item: any) => item.length > 0
   );
   subjectWaseQuestionsArray = withoutNullSubjectWaseQuestionsArray;
+  let emtyArraySetAfterPost: number[] = [];
+
+  const handleInputDataSubmit = () => {
+    // console.log("bangladesh1");
+    groupsDataPost();
+    arrayImtyAfterPost(emtyArraySetAfterPost);
+    onChangeText("");
+  };
 
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 px-4 text-center  ">
-        <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
-          Create groups from questions
+        <Text className="text-2xl font-extrabold text-center border-b-2  pb-2 mb-2">
+          Create groups from all questions
         </Text>
-        {idArrayValues.length === 0 ?  (
+
+        {idArrayValues.length === 0 ? (
           <></>
-        ):(
+        ) : (
           <View className="flex flex-row justify-between gap-3">
             <TextInput
-              className=" block min-w-0 grow border h-12 rounded-md py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500  sm:text-sm/6 "
               onChangeText={onChangeText}
+              className=" block min-w-0 grow border h-12 rounded-md py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500  sm:text-sm/6 "
               placeholder="Group name"
             />
             <TouchableOpacity
-              onPress={() => Alert.alert("Simple Button pressed")}
+              onPress={() => handleInputDataSubmit()}
               className="text-white bg-blue-700 h-12  flex items-center justify-center   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2   "
             >
               <Text className="text-white">Create groups</Text>
             </TouchableOpacity>
           </View>
-        ) }
+        )}
 
         {questions.length === 0 ? (
           <View className="flex-1 justify-center items-center ">
@@ -86,13 +120,13 @@ const PartialCheklist = () => {
           </View>
         ) : (
           <ScrollView className="">
+            <GroupCreateRuls></GroupCreateRuls>
             {subjectWaseQuestionsArray.map(
               (subjectWaseQuestionsData: any, idx: any) => (
                 <ParitalTable
                   key={idx}
                   {...{ subjectWaseQuestionsData }}
                 ></ParitalTable>
-              
               )
             )}
           </ScrollView>
