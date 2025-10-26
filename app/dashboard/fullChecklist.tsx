@@ -8,7 +8,6 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 const FullChecklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
-  // const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     axios
@@ -44,55 +43,80 @@ const FullChecklist = () => {
   );
   subjectWaseQuestionsArray = withoutNullSubjectWaseQuestionsArray;
 
-  // const [form, setForm] = useState({
-  //   subject: "",
-  //   questionText: "",
-  //   reference: "",
-  //   mark: "",
-  //   remark: "",
-  // });
-
-  // const onPress = () => {
-  //   setModalVisible(true);
-  // };
-
-  // const handleSave = () => {
-  //   // add to local list
-  //   setQuestions((prev) => [...prev, { ...form, id: Date.now().toString() }]);
-  //   setForm({
-  //     subject: "",
-  //     questionText: "",
-  //     reference: "",
-  //     mark: "",
-  //     remark: "",
-  //   });
-  //   setModalVisible(false);
-  // };
-
-  // const handleCancel = () => {
-  //   setForm({
-  //     subject: "",
-  //     questionText: "",
-  //     reference: "",
-  //     mark: "",
-  //     remark: "",
-  //   });
-  //   setModalVisible(false);
-  // };
-
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 px-4 text-center  ">
         <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
           Survey Question
         </Text>
-        {/* <TouchableOpacity style={styles.button} onPress={onPress}>
+
+        {questions.length === 0 ? (
+          <View className="flex-1 justify-center items-center ">
+            <Text className="text-2xl text-center">No Question added yet!</Text>
+          </View>
+        ) : (
+          <ScrollView className="">
+            {subjectWaseQuestionsArray.map(
+              (subjectWaseQuestionsData: any, idx: any) => (
+                <SingleTable
+                  key={idx}
+                  {...{ subjectWaseQuestionsData }}
+                ></SingleTable>
+              )
+            )}
+          </ScrollView>
+        )}
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
+};
+
+// const [form, setForm] = useState({
+//   subject: "",
+//   questionText: "",
+//   reference: "",
+//   mark: "",
+//   remark: "",
+// });
+
+// const onPress = () => {
+//   setModalVisible(true);
+// };
+
+// const handleSave = () => {
+//   // add to local list
+//   setQuestions((prev) => [...prev, { ...form, id: Date.now().toString() }]);
+//   setForm({
+//     subject: "",
+//     questionText: "",
+//     reference: "",
+//     mark: "",
+//     remark: "",
+//   });
+//   setModalVisible(false);
+// };
+
+// const handleCancel = () => {
+//   setForm({
+//     subject: "",
+//     questionText: "",
+//     reference: "",
+//     mark: "",
+//     remark: "",
+//   });
+//   setModalVisible(false);
+// };
+
+{
+  /* <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text className="text-white text-xl font-semibold ">
             + Add Question
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity> */
+}
 
-        {/* <Modal
+{
+  /* <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
@@ -133,28 +157,9 @@ const FullChecklist = () => {
               </View>
             </View>
           </View>
-        </Modal> */}
-        {questions.length === 0 ? (
-          <View className="flex-1 justify-center items-center ">
-            <Text className="text-2xl text-center">No Question added yet!</Text>
-          </View>
-        ) : (
-          <ScrollView className="">
-            {subjectWaseQuestionsArray.map(
-              (subjectWaseQuestionsData: any, idx: any) => (
-                <SingleTable
-                  key={idx}
-                  {...{ subjectWaseQuestionsData }}
-                ></SingleTable>
-              )
-            )}
-          </ScrollView>
-        )}
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
-};
-
+        </Modal> */
+}
+// ==========================================
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,

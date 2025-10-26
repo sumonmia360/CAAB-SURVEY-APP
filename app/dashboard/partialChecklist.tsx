@@ -91,7 +91,7 @@ const PartialCheklist = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 px-4 text-center  ">
+      <SafeAreaView className="flex-1 px-4 text-center">
         <Text className="text-2xl font-extrabold text-center border-b-2  pb-2 mb-2">
           Create groups from all questions
         </Text>
