@@ -19,7 +19,7 @@ interface Question {
 
 const SingleTable = ({ subjectWaseQuestionsData }: any) => {
   const tableHead = ["No.", "Question", "Ref Code", "Mark", "Remarks"];
-  // const { width } = useWindowDimensions();
+
 
   const subJectNameSet = subjectWaseQuestionsData[0].subject_name;
 
@@ -85,7 +85,7 @@ const SingleTable = ({ subjectWaseQuestionsData }: any) => {
                               var observer = new MutationObserver(function() { sendHeight(); });
                               observer.observe(document.body, { childList: true, subtree: true, characterData: true });
                               window.addEventListener('load', sendHeight);
-                              setTimeout(sendHeight, 500);
+                              setTimeout(sendHeight,5000);
                             })();true;`}
                             source={{
                               html: `<html>

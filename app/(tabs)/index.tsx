@@ -1,6 +1,6 @@
 import MenuCard from "@/components/MenuCard";
 import { images } from "@/constants/images";
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { heroItems } from "../../jsons/HeroData";
 import "../global.css";
 
@@ -14,10 +14,11 @@ export default function index() {
       >
         <Image
           source={images.projectLogo}
-          className="w-20 h-20 mt-10  mx-auto "
+          style={styles.pLogoStyle}
+          className="w-20 h-20 mt-10  mx-auto"
         />
         <View className="flex-1 mt-5">
-          <Text className="font-bold">CAAB SURVEY</Text>
+          <Text className="font-bold text-2xl">CAAB SURVEY</Text>
         </View>
         <FlatList
           data={heroItems}
@@ -35,3 +36,12 @@ export default function index() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  pLogoStyle: {
+    height:100,
+    width:110
+  }
+});
+
+

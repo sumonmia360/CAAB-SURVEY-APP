@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import Logo from "../assets/svg/fullcheckListSVG.svg";
 
 interface cardProps {
   id: number;
@@ -9,11 +10,11 @@ interface cardProps {
 }
 
 const MenuCard = ({ id, title, image1, url }: cardProps) => {
-
   return (
     <Link href={url} className="w-[45%] mb-2 border rounded-lg h-full py-1  ">
       <View className="flex w-full items-center justify-center ">
-        <Image source={image1}  className="size-20" ></Image>
+        <Logo width={70} height={70} />
+        {/* <Image source={image1}  className="size-20" ></Image> */}
         <Text className="font-bold">{title}</Text>
       </View>
     </Link>
@@ -21,5 +22,3 @@ const MenuCard = ({ id, title, image1, url }: cardProps) => {
 };
 
 export default MenuCard;
-
-

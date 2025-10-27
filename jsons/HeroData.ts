@@ -14,14 +14,14 @@ export const heroItems = [
   },
   {
     id: 3,
-    title: "Partial Checklist",
+    title: "Question Groups",
     image1: require('../assets/images/checklist2.png'),
     url: "/dashboard/partialChecklist",
   },
   {
     id: 4,
-    title: "Summary Report",
-    image1: require('../assets/images/reports.png'),
+    title: "ASD Library",
+    image1: require('../assets/images/library.png'),
     url: "/demoPage/[id]",
   },
   {
@@ -48,10 +48,5 @@ export const heroItems = [
     image1: require('../assets/images/exemptions.png'),
     url: "/demoPage/[id]",
   },
-  {
-    id: 9,
-    title: "ASD Library",
-    image1: require('../assets/images/library.png'),
-    url: "/demoPage/[id]",
-  },
+  
 ];
