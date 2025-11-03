@@ -20,32 +20,32 @@ export const heroItems = [
   },
   {
     id: 4,
-    title: "ASD Library",
+    title: " CAPs",
     image1: require('../assets/images/library.png'),
     url: "/demoPage/[id]",
   },
-  {
+   {
     id: 5,
-    title: "CAPs",
-    image1: require('../assets/images/caps.png'),
-    url: "/demoPage/[id]",
-  },
-  {
-    id: 6,
     title: "Findings Tracker",
     image1: require('../assets/images/findings.png'),
     url: "/demoPage/[id]",
   },
   {
-    id: 7,
+    id: 6,
     title: "Overdues Findings",
     image1: require('../assets/images/overdues.png'),
     url: "/demoPage/[id]",
   },
   {
-    id: 8,
+    id: 7,
     title: "Exemptions",
     image1: require('../assets/images/exemptions.png'),
+    url: "/demoPage/[id]",
+  },
+   {
+    id: 8,
+    title: "ASD Library",
+    image1: require('../assets/images/caps.png'),
     url: "/demoPage/[id]",
   },
   

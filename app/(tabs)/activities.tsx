@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 const Activities = () => {
   return (
     <View style={styles.div1}>
-      <Text className="text-4xl text-yellow-500">Activites</Text>
+      <Text className="text-4xl text-yellow-500 text-center">Activites</Text>
     </View>
   );
 };
@@ -15,6 +15,6 @@ const styles = StyleSheet.create({
   div1: {
     flex: 1,
     justifyContent: "center",
-    // alignItems: "center",
+    alignItems: "center",
   },
 });

@@ -15,10 +15,10 @@ export default function index() {
         <Image
           source={images.projectLogo}
           style={styles.pLogoStyle}
-          className="w-20 h-20 mt-10  mx-auto"
+          className="w-20 h-20 mt-10  mx-auto "
         />
         <View className="flex-1 mt-5">
-          <Text className="font-bold text-2xl">CAAB SURVEY</Text>
+          <Text className="font-bold text-2xl text-center ">CAAB SURVEY</Text>
         </View>
         <FlatList
           data={heroItems}

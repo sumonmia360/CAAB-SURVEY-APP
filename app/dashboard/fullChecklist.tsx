@@ -1,13 +1,16 @@
+import CreateGroupSection from "@/components/CreateGroupSection";
+import FilterOption from "@/components/FilterOption";
 import SingleTable from "@/components/SingleTable";
+import { useGroupMainArray } from "@/store/store";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const FullChecklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
   const [subjects, setSubjects] = useState<any[]>([]);
+  const mainArray = useGroupMainArray((state) => state.idArray);
 
   useEffect(() => {
     axios
@@ -42,35 +45,56 @@ const FullChecklist = () => {
     (item: any) => item.length > 0
   );
   subjectWaseQuestionsArray = withoutNullSubjectWaseQuestionsArray;
+  // console.log("Main Global Array:", mainArray);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView className="flex-1 px-4 text-center  ">
-        <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
-          Survey Question
-        </Text>
+    <View className="flex-1 px-4 text-center mt-8  ">
+      <Text className="text-3xl font-extrabold text-center border-b-2 pb-2 mb-4">
+        Survey Questions
+      </Text>
 
-        {questions.length === 0 ? (
-          <View className="flex-1 justify-center items-center ">
-            <Text className="text-2xl text-center">No Question added yet!</Text>
-          </View>
-        ) : (
-          <ScrollView className="">
-            {subjectWaseQuestionsArray.map(
-              (subjectWaseQuestionsData: any, idx: any) => (
-                <SingleTable
-                  key={idx}
-                  {...{ subjectWaseQuestionsData }}
-                ></SingleTable>
-              )
-            )}
-          </ScrollView>
-        )}
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <FilterOption></FilterOption>
+      {questions.length === 0 ? (
+        <View className="flex-1 justify-center items-center ">
+          <Text className="text-2xl text-center">No Question added yet!!</Text>
+        </View>
+      ) : (
+        <ScrollView className="">
+          {mainArray.length !== 0 ? (
+            <CreateGroupSection></CreateGroupSection>
+          ) : (
+            <></>
+          )}
+          {subjectWaseQuestionsArray.map(
+            (subjectWaseQuestionsData: any, idx: any) => (
+              <SingleTable
+                key={idx}
+                {...{ subjectWaseQuestionsData }}
+              ></SingleTable>
+            )
+          )}
+        </ScrollView>
+      )}
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    // margin: 12,
+    borderWidth: 1,
+    width: 112,
+
+    // padding: 10,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    height: 40,
+  },
+});
 // const [form, setForm] = useState({
 //   subject: "",
 //   questionText: "",

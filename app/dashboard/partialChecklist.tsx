@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const PartialCheklist = () => {
   const [questions, setQuestions] = useState<any[]>([]);
@@ -90,49 +89,47 @@ const PartialCheklist = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView className="flex-1 px-4 text-center">
-        <Text className="text-2xl font-extrabold text-center border-b-2  pb-2 mb-2">
-          Create groups from all questions
-        </Text>
+    <View className="flex-1 px-4 text-center">
+      <Text className="text-2xl font-extrabold text-center border-b-2  pb-2 mb-2">
+        Create groups from all questions
+      </Text>
 
-        {idArrayValues.length === 0 ? (
-          <></>
-        ) : (
-          <View className="flex flex-row justify-between gap-3">
-            <TextInput
-              onChangeText={onChangeText}
-              className=" block min-w-0 grow border h-12 rounded-md py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500  sm:text-sm/6 "
-              placeholder="Group name"
-            />
-            <TouchableOpacity
-              onPress={() => handleInputDataSubmit()}
-              className="text-white bg-blue-700 h-12  flex items-center justify-center   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2   "
-            >
-              <Text className="text-white">Create groups</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+      {idArrayValues.length === 0 ? (
+        <></>
+      ) : (
+        <View className="flex flex-row justify-between gap-3">
+          <TextInput
+            onChangeText={onChangeText}
+            className=" block min-w-0 grow border h-12 rounded-md py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500  sm:text-sm/6 "
+            placeholder="Group name"
+          />
+          <TouchableOpacity
+            onPress={() => handleInputDataSubmit()}
+            className="text-white bg-blue-700 h-12  flex items-center justify-center   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2   "
+          >
+            <Text className="text-white">Create groups</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
-        {questions.length === 0 ? (
-          <View className="flex-1 justify-center items-center ">
-            <Text className="text-2xl text-center">No Question added yet!</Text>
-          </View>
-        ) : (
-          <ScrollView className="">
-            <GroupCreateRuls></GroupCreateRuls>
-            {subjectWaseQuestionsArray.map(
-              (subjectWaseQuestionsData: any, idx: any) => (
-                <ParitalTable
-                  key={idx}
-                  {...{ subjectWaseQuestionsData }}
-                ></ParitalTable>
-              )
-            )}
-          </ScrollView>
-        )}
-      </SafeAreaView>
-    </SafeAreaProvider>
+      {questions.length === 0 ? (
+        <View className="flex-1 justify-center items-center ">
+          <Text className="text-2xl text-center">No Question added yet!</Text>
+        </View>
+      ) : (
+        <ScrollView className="">
+          <GroupCreateRuls></GroupCreateRuls>
+          {subjectWaseQuestionsArray.map(
+            (subjectWaseQuestionsData: any, idx: any) => (
+              <ParitalTable
+                key={idx}
+                {...{ subjectWaseQuestionsData }}
+              ></ParitalTable>
+            )
+          )}
+        </ScrollView>
+      )}
+    </View>
   );
 };
 
